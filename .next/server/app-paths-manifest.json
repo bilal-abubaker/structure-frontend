@@ -1,0 +1,5 @@
+{
+  "/(Dashboard Pages)/users/page": "app/(Dashboard Pages)/users/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/_not-found/page": "app/_not-found/page.js"
+}
