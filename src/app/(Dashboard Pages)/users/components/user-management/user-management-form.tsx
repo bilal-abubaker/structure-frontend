@@ -1,12 +1,10 @@
 'use client';
 
-import { Formik, Form } from 'formik';
 import { Button } from '@/components/ui/button';
-import { SeatOrganizationSchema } from '@/validations/seat-organization.validation-schema';
-import { InputField } from '@/components/ui/input-field';
 import { CustomSelect } from '@/components/ui/custom-select';
-import MultipleSelector from '@/components/ui/multi-select';
-import { FormField } from '@/components/ui/form-field';
+import { InputField } from '@/components/ui/input-field';
+import { SeatOrganizationSchema } from '@/validations/seat-organization.validation-schema';
+import { Form, Formik } from 'formik';
 
 export default function UserManagementForm() {
   const roles = [
@@ -113,23 +111,7 @@ export default function UserManagementForm() {
                 required
                 error={touched.role && errors.role ? errors.role : undefined}
               />
-              {/* {touched.event && errors.event && (
-                <p className="text-sm text-red-500">{errors.event}</p>
-              )} */}
             </div>
-            {/* <div>
-              <FormField label="Events" required>
-                <MultipleSelector
-                  defaultOptions={OPTIONS}
-                  placeholder="Select frameworks you like..."
-                  emptyIndicator={
-                    <p className="text-center text-lg leading-10 text-gray-600 dark:text-gray-400">
-                      no results found.
-                    </p>
-                  }
-                />
-              </FormField>
-            </div> */}
 
             {/* Submit Button */}
             <div className="flex justify-end pt-4">

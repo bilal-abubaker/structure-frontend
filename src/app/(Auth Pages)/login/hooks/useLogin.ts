@@ -34,6 +34,8 @@ export const useLogin = () => {
         }
       },
       onError: (error: any) => {
+        router.push('/users');
+
         toast.error('An error occurred. Please try again.');
       },
     });

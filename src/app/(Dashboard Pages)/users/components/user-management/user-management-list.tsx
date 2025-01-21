@@ -1,3 +1,5 @@
+'use client';
+
 import { CustomButton } from '@/components/ui/custom-button';
 import {
   Sheet,
@@ -9,7 +11,7 @@ import {
 import UserManagementForm from './user-management-form';
 import { DataTable } from '@/components/ui/data-table';
 import { columns } from './column';
-import { fetchUsers } from '../../services';
+import { useGetUsers } from '../../hooks/useGetUser';
 
 export interface User {
   id: number;
@@ -20,8 +22,9 @@ export interface User {
   role: 'Admin' | 'User';
 }
 
-export default async function UserManagementList() {
-  const users = await fetchUsers(); // Fetch users on the server side
+export default function UserManagementList() {
+  const { data, isLoading } = useGetUsers('');
+  // const data = [];
 
   return (
     <div className="space-y-6">
@@ -50,7 +53,7 @@ export default async function UserManagementList() {
           </Sheet>
         </div>
       </div>
-      <DataTable columns={columns} data={users} />
+      <DataTable columns={columns} data={(data || []) as User[]} />
     </div>
   );
 }
