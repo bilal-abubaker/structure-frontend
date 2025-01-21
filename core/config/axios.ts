@@ -30,8 +30,8 @@ class AxiosService {
 
   public async get<T>(url: string, params?: object): Promise<T> {
     try {
+      console.log(url, 'url');
       const response = await this.instance.get<T>(url, { params });
-
       return response?.data;
     } catch (error) {
       throw new Error('error');
@@ -76,6 +76,6 @@ class AxiosService {
 }
 
 const axiosService = new AxiosService(
-  process.env.NEXT_PUBLIC_BACKEND_URL || 'https://jsonplaceholder.typicode.com'
+  process.env.NEXT_PUBLIC_BACKEND_URL || 'https://dummyjson.com'
 );
 export default axiosService;

@@ -59,7 +59,7 @@ export function Sidebar() {
           >
             <Calendar className="h-8 w-8 flex-shrink-0 text-white" />
             {!isCollapsed && (
-              <span className="text-xl font-bold text-white">Calendax</span>
+              <span className="text-xl font-bold text-white">Dummy</span>
             )}
           </div>
 

@@ -1,5 +1,5 @@
 import UserManagementList from './components/user-management/user-management-list';
 
-export default function UserPage() {
-  return <UserManagementList />;
+export default async function UserPage({ searchParams }) {
+  return <UserManagementList searchParams={await searchParams} />;
 }

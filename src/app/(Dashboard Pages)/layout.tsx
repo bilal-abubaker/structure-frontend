@@ -5,7 +5,7 @@ import Loading from './loading';
 import Head from 'next/head';
 
 export const metadata = {
-  title: 'CalenDax',
+  title: 'Dummy',
   description: 'Event Management System',
 };
 

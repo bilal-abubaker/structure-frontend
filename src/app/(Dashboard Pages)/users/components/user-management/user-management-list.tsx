@@ -9,7 +9,7 @@ import {
 import UserManagementForm from './user-management-form';
 import { DataTable } from '@/components/ui/data-table';
 import { columns } from './column';
-import { fetchUsers } from '../../services';
+import { fetchUsers, ResponseTypes } from '../../services';
 
 export interface User {
   id: number;
@@ -20,9 +20,8 @@ export interface User {
   role: 'Admin' | 'User';
 }
 
-export default async function UserManagementList() {
-  const users = await fetchUsers(); // Fetch users on the server side
-
+export default async function UserManagementList({ searchParams }) {
+  const users = await fetchUsers(searchParams);
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between rounded-lg bg-white p-4">

@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   ColumnDef,
   flexRender,
@@ -17,6 +17,7 @@ import { Skeleton } from './skeleton';
 import { DataTablePageSizeOptions, DataTablePaginationMode } from './type';
 import { Input } from './input';
 import { cn } from '@/lib/utils';
+import { redirect, useSearchParams } from 'next/navigation';
 // import { DataTablePagination } from './data-table-pagination';
 
 interface DataTableProps<TData, TValue> {
@@ -40,12 +41,13 @@ export function DataTable<TData, TValue>({
     pageIndex: 0,
     pageSize: 10,
   });
+
   const [columnVisibility, setColumnVisibility] = useState({});
   const [rowSelection, setRowSelection] = useState({});
   const [searchTerm, setSearchTerm] = useState('');
 
   const table = useReactTable<TData>({
-    data,
+    data: data.users,
     columns,
     getCoreRowModel: getCoreRowModel(),
     ...(paginationMode === 'client' && {
@@ -68,7 +70,6 @@ export function DataTable<TData, TValue>({
     manualPagination: true,
     enableRowSelection: true,
   });
-
   const { rows } = table?.getRowModel();
 
   return (
@@ -121,6 +122,84 @@ export function DataTable<TData, TValue>({
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
         {/* <DataTablePagination table={table} pageSizeOptions={pageSizeOptions} /> */}
+      </div>
+      <div className="flex items-center gap-2">
+        <button
+          className="rounded border p-1"
+          onClick={() => {
+            console.log(table.getState().pagination.pageIndex + 1, 'aa 222');
+            table.firstPage();
+
+            redirect(`/users?page=1&skip=5&limit=5`);
+          }}
+          disabled={table.getState().pagination.pageIndex + 2 == 1}
+          // disabled={!table.getCanPreviousPage()}
+        >
+          {'<<'}
+        </button>
+        <button
+          className="rounded border p-1"
+          onClick={() => table.previousPage()}
+          disabled={!table.getCanPreviousPage()}
+        >
+          {'<'}
+        </button>
+        <button
+          className="rounded border p-1"
+          onClick={() => {
+            table.nextPage();
+            redirect(
+              `/users?page=${table.getState().pagination.pageIndex + 2}&skip=${table.getState().pagination.pageIndex + 2 * 5}&limit=${5}`
+            );
+          }}
+          disabled={
+            table.getState().pagination.pageIndex + 1 ==
+            Math.ceil(data?.total / 5)
+          }
+        >
+          {'>'}
+        </button>
+
+        <button
+          className="rounded border p-1"
+          onClick={() => table.lastPage()}
+          disabled={!table.getCanNextPage()}
+        >
+          {'>>'}
+        </button>
+        <span className="flex items-center gap-1">
+          <div>Page</div>
+          <strong>
+            {table.getState().pagination.pageIndex + 1} of{' '}
+            {Math.ceil(data?.total / 5)}
+          </strong>
+        </span>
+        <span className="flex items-center gap-1">
+          | Go to page:
+          <input
+            type="number"
+            min="1"
+            max={table.getPageCount()}
+            defaultValue={table.getState().pagination.pageIndex + 1}
+            onChange={(e) => {
+              const page = e.target.value ? Number(e.target.value) - 1 : 0;
+              table.setPageIndex(page);
+            }}
+            className="w-16 rounded border p-1"
+          />
+        </span>
+        <select
+          value={table.getState().pagination.pageSize}
+          onChange={(e) => {
+            table.setPageSize(Number(e.target.value));
+          }}
+        >
+          {[10, 20, 30, 40, 50].map((pageSize) => (
+            <option key={pageSize} value={pageSize}>
+              Show {pageSize}
+            </option>
+          ))}
+        </select>
       </div>
     </div>
   );
