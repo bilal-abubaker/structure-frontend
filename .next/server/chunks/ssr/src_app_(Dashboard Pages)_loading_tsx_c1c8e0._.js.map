@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file:///home/dax/Front-End%20Projects/syncora%20ref%20project/src/app/%28Dashboard%20Pages%29/loading.tsx"],"sourcesContent":["export default function Loading() {\n  return (\n    <div className=\"flex items-center justify-center min-h-[200px]\">\n      <div className=\"text-lg font-medium text-primary\">\n        Loading<span className=\"loading-dots\"></span>\n      </div>\n    </div>\n  );\n}"],"names":[],"mappings":";;;;;AAAe,SAAS;IACtB,qBACE,8OAAC;QAAI,WAAU;kBACb,cAAA,8OAAC;YAAI,WAAU;;gBAAmC;8BACzC,8OAAC;oBAAK,WAAU;;;;;;;;;;;;;;;;;AAI/B"}},
-    {"offset": {"line": 38, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
-}
