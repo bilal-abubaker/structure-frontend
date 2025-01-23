@@ -48,7 +48,7 @@ export default function Login() {
                   name="username"
                   label="Email"
                   type="email"
-                  placeholder="admin@calendax.com"
+                  placeholder="admin@Dummy.com"
                   value={values.username}
                   onChange={handleChange}
                   onBlur={handleBlur}

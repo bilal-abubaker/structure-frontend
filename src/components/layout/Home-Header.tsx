@@ -22,7 +22,7 @@ export function HomeHeader() {
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
           <span className="text-2xl font-bold">
-            Calen<span className="text-orange-500">dax</span>
+            Calen<span className="text-orange-500">Dummy</span>
           </span>
         </Link>
 
