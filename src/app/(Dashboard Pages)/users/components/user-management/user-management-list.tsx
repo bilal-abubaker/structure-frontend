@@ -12,6 +12,8 @@ import UserManagementForm from './user-management-form';
 import { DataTable } from '@/components/ui/data-table';
 import { columns } from './column';
 import { useGetUsers } from '../../hooks/useGetUser';
+import { useContext, useEffect } from 'react';
+import { MyContext } from '@/app/providers/user-provider';
 
 export interface User {
   id: number;
@@ -24,7 +26,11 @@ export interface User {
 
 export default function UserManagementList() {
   const { data, isLoading } = useGetUsers('');
-  // const data = [];
+  const { text, setText } = useContext(MyContext);
+
+  useEffect(() => {
+    setText('bilal');
+  }, []);
 
   return (
     <div className="space-y-6">
